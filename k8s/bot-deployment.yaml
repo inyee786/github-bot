@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: github-bot
+  namespace: github-bot
+spec:
+  selector:
+    matchLabels:
+      app: github-bot
+  template:
+    metadata:
+      labels:
+        app: github-bot
+    spec:
+      containers:
+      - name: github-bot-container
+        ports:
+        - containerPort: 3000
+        image: inyee/github-bot:master-4640873
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: github-bot
+  labels:
+    app: github-bot
+  name: github-bot-service
+spec:
+  type: NodePort
+  ports:
+  - name: github-bot
+    port: 3000
+    protocol: TCP
+  selector:
+    app: github-bot
