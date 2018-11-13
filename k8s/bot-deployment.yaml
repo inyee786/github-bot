@@ -16,7 +16,7 @@ spec:
       - name: github-bot-container
         ports:
         - containerPort: 3000
-        image: inyee/github-bot:master-cee19bf
+        image: inyee/github-bot:master-53579f9
         imagePullPolicy: Always
 ---
 apiVersion: v1
